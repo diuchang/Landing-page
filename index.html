@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minh Nguyen — Product Manager & Design Lead</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --bg3: #1a1a1a;
+      --border: #222222;
+      --accent: #00d9a3;
+      --accent2: #7c3aed;
+      --text: #e8e8e8;
+      --muted: #777777;
+      --card-bg: #141414;
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,217,163,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: -150px; right: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(124,58,237,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+    }
+
+    .hero-label::before,
+    .hero-label::after {
+      content: '';
+      width: 24px; height: 1px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-size: clamp(52px, 8vw, 96px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+      max-width: 900px;
+    }
+
+    h1 .line2 { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 48px;
+      line-height: 1.7;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      background: #00c492;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,217,163,0.25);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .hero-meta {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 48px;
+    }
+
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-meta-item .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .hero-meta-item .value {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 100px 48px; }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 20px; height: 1px;
+      background: var(--accent);
+    }
+
+    h2 {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 540px;
+      line-height: 1.7;
+      margin-bottom: 64px;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--bg2); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .about-text p strong { color: var(--text); }
+
+    .skills-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--muted);
+      margin-bottom: 16px;
+      margin-top: 32px;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+
+    .skill-badge:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .skill-badge .dot {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    .stat-number {
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: -2px;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--bg); }
+
+    .timeline {
+      position: relative;
+      max-width: 860px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 40px;
+      margin-bottom: 56px;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .timeline-dot {
+      position: absolute;
+      left: -5px;
+      top: 8px;
+      width: 11px; height: 11px;
+      background: var(--accent);
+      border-radius: 50%;
+      border: 2px solid var(--bg);
+    }
+
+    .timeline-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .timeline-period {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .timeline-badge {
+      font-size: 11px;
+      padding: 3px 10px;
+      background: rgba(0,217,163,0.1);
+      color: var(--accent);
+      border-radius: 100px;
+      font-weight: 600;
+    }
+
+    .timeline-company {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+      letter-spacing: -0.5px;
+    }
+
+    .timeline-role {
+      font-size: 14px;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .timeline-desc {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .timeline-desc li {
+      margin-bottom: 8px;
+      padding-left: 0;
+      list-style: none;
+      position: relative;
+    }
+
+    .timeline-desc li::before {
+      content: '→';
+      margin-right: 8px;
+      color: var(--accent);
+      font-size: 13px;
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--bg2); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,217,163,0.04) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+    }
+
+    .project-card:hover::before { opacity: 1; }
+
+    .project-icon {
+      width: 48px; height: 48px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .project-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .project-name {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--text);
+    }
+
+    .project-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .project-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .project-link {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .project-arrow {
+      width: 32px; height: 32px;
+      background: var(--bg3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .project-card:hover .project-arrow {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .project-metrics {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .metric {
+      font-size: 12px;
+      padding: 4px 10px;
+      background: var(--bg3);
+      border-radius: 100px;
+      color: var(--muted);
+    }
+
+    /* ── EDUCATION ── */
+    #education { background: var(--bg); }
+
+    .edu-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 700px;
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    .edu-icon {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      flex-shrink: 0;
+    }
+
+    .edu-school {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 4px;
+    }
+
+    .edu-degree {
+      font-size: 15px;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .edu-year {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--bg2);
+      text-align: center;
+    }
+
+    #contact h2 { margin-bottom: 12px; }
+
+    #contact .section-desc {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 48px;
+    }
+
+    .contact-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .contact-chip:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .contact-chip svg {
+      width: 16px; height: 16px;
+      color: var(--accent);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg);
+      text-align: center;
+      padding: 32px 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    footer p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    footer span { color: var(--accent); }
+
+    /* ── FADE IN ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      #hero, section { padding-left: 20px; padding-right: 20px; }
+      #hero { padding-top: 100px; }
+      .hero-meta { left: 20px; gap: 16px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+      .edu-card { flex-direction: column; gap: 20px; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">Minh<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="mailto:nguyenvunhathao0501@gmail.com" class="btn btn-primary" style="padding:10px 20px;font-size:13px;">Hire Me</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-label">Available for opportunities</div>
+    <h1>
+      Minh<br/>
+      <span class="line2">Nguyen.</span>
+    </h1>
+    <p class="hero-sub">Product Manager &amp; Design Lead building digital products that create real impact — from zero to shipped.</p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn btn-primary">View Projects ↓</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="label">Location</span>
+        <span class="value">Ho Chi Minh</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="label">Role</span>
+        <span class="value">Product &amp; Design</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="label">Status</span>
+        <span class="value" style="color:var(--accent)">● Open</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">About</div>
+    <div class="about-grid">
+      <div class="about-text fade-up">
+        <h2 style="margin-bottom:24px;">Building products<br/>at the intersection<br/>of design &amp; growth.</h2>
+        <p>I'm a <strong>Product Manager and Design Lead</strong> based in Ho Chi Minh City with a background in Entrepreneurship Management. I specialize in translating complex business opportunities into digital products that people actually use.</p>
+        <p>From leading client negotiations at Rebo Agency to building design systems at ReOrc, I thrive where product thinking meets execution. I've shipped everything from AI-powered financial dashboards to sports booking platforms.</p>
+        <p>When I'm not building products, I'm obsessing over <strong>productivity systems</strong> — how to do more with less, faster and smarter.</p>
+        <p class="skills-title">Tools &amp; Skills</p>
+        <div class="skills-grid">
+          <span class="skill-badge"><span class="dot"></span>Claude AI</span>
+          <span class="skill-badge"><span class="dot"></span>Cursor</span>
+          <span class="skill-badge"><span class="dot"></span>Figma</span>
+          <span class="skill-badge"><span class="dot"></span>Product Strategy</span>
+          <span class="skill-badge"><span class="dot"></span>UX/UI Design</span>
+          <span class="skill-badge"><span class="dot"></span>Design Systems</span>
+          <span class="skill-badge"><span class="dot"></span>Go-to-Market</span>
+          <span class="skill-badge"><span class="dot"></span>AI-assisted Dev</span>
+        </div>
+      </div>
+      <div class="about-stats fade-up delay-2">
+        <div class="stat-card">
+          <div class="stat-number">4+</div>
+          <div class="stat-label">Years in Product Management</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Weekly active users on Rebo Finance</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1K+</div>
+          <div class="stat-label">Organic visits in first week on jobs.nhathao.com</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Live products shipped &amp; growing</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label">Experience</div>
+    <h2 class="fade-up">Where I've<br/>been building.</h2>
+    <p class="section-desc fade-up delay-1">A track record of shipping products, leading teams, and driving growth across startups and agencies in Vietnam.</p>
+
+    <div class="timeline">
+
+      <div class="timeline-item fade-up">
+        <div class="timeline-dot"></div>
+        <div class="timeline-meta">
+          <span class="timeline-period">Jan 2021 – Present</span>
+          <span class="timeline-badge">Current</span>
+        </div>
+        <div class="timeline-company">Rebo Agency</div>
+        <div class="timeline-role">Product Management</div>
+        <ul class="timeline-desc">
+          <li>Led client-facing project negotiations: defined design scope, aligned expectations, and managed project timelines and delivery execution.</li>
+          <li>Built and scaled REBO Academy — trained students, developed educational programs, and created sales funnel initiatives that strengthened brand positioning.</li>
+          <li>Led development of internal digital products and new business initiatives, coordinating design, execution, and go-to-market efforts.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-up delay-1">
+        <div class="timeline-dot"></div>
+        <div class="timeline-meta">
+          <span class="timeline-period">Jul 2024 – Sep 2025</span>
+        </div>
+        <div class="timeline-company">ReOrc</div>
+        <div class="timeline-role">Design Lead</div>
+        <ul class="timeline-desc">
+          <li>Led UX/UI design initiatives, improving core user flows and enhancing product usability across multiple shipped features.</li>
+          <li>Collaborated with product and engineering stakeholders to translate complex requirements into scalable design solutions.</li>
+          <li>Built and managed a scalable design system, establishing reusable UI patterns and team workflows that improved design consistency.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-up delay-2">
+        <div class="timeline-dot"></div>
+        <div class="timeline-meta">
+          <span class="timeline-period">Jul 2024 – Sep 2025</span>
+        </div>
+        <div class="timeline-company">WeSport</div>
+        <div class="timeline-role">Account Manager</div>
+        <ul class="timeline-desc">
+          <li>Managed client relationships and sports venue partnership operations, coordinating between customers, venue owners, and internal teams.</li>
+          <li>Supported business growth by identifying partnership opportunities and optimizing account performance.</li>
+          <li>Managed design execution and repositioned product UX to improve usability and create a seamless booking journey.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-up delay-3">
+        <div class="timeline-dot"></div>
+        <div class="timeline-meta">
+          <span class="timeline-period">Earlier</span>
+        </div>
+        <div class="timeline-company">Rebo Sport Booking</div>
+        <div class="timeline-role">Product Marketer</div>
+        <ul class="timeline-desc">
+          <li>Led product design and end-to-end digital execution across client and internal projects, working closely with developers on UX and delivery.</li>
+          <li>Coordinated project resources, timelines, and cross-functional teams to ensure milestones were delivered on schedule.</li>
+          <li>Managed client acquisition and business development in a founder-led environment.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">Projects</div>
+    <h2 class="fade-up">Things I've<br/>shipped.</h2>
+    <p class="section-desc fade-up delay-1">Live products I've built and launched — from AI-powered dashboards to job market insights.</p>
+
+    <div class="projects-grid">
+
+      <a href="https://tinhtoc.com" target="_blank" rel="noopener" class="project-card fade-up">
+        <div class="project-icon">⚡</div>
+        <div class="project-tag">Product · Mar 2026 – Now</div>
+        <div class="project-name">Tinh Toc</div>
+        <p class="project-desc">The Lean-Fast Work Management Platform. Led product design, client negotiations, defined scope, and managed delivery execution to ensure high-quality outcomes aligned with business goals.</p>
+        <div class="project-metrics">
+          <span class="metric">Work Management</span>
+          <span class="metric">SaaS</span>
+        </div>
+        <div class="project-footer">
+          <span class="project-link">tinhtoc.com</span>
+          <span class="project-arrow">↗</span>
+        </div>
+      </a>
+
+      <a href="https://rebo.ai.vn" target="_blank" rel="noopener" class="project-card fade-up delay-1">
+        <div class="project-icon">📊</div>
+        <div class="project-tag">AI Product · Sep 2025 – Now</div>
+        <div class="project-name">Rebo Finance</div>
+        <p class="project-desc">AI-powered financial insights product built with Claude Code and Perplexity for real-time research. Transforms complex business and market information into structured, accessible insights.</p>
+        <div class="project-metrics">
+          <span class="metric">50+ WAU</span>
+          <span class="metric">AI-Powered</span>
+          <span class="metric">6 months</span>
+        </div>
+        <div class="project-footer">
+          <span class="project-link">rebo.ai.vn</span>
+          <span class="project-arrow">↗</span>
+        </div>
+      </a>
+
+      <a href="https://jobs.nhathao.com" target="_blank" rel="noopener" class="project-card fade-up delay-2">
+        <div class="project-icon">🤖</div>
+        <div class="project-tag">AI Research · Mar 2026 – Now</div>
+        <div class="project-name">AI's Impact on Employment</div>
+        <p class="project-desc">AI-powered career insights landing page using VietJobs data, Claude Code for rapid development, and DeepSeek API for trend analysis. Transforms raw job-market data into structured insights.</p>
+        <div class="project-metrics">
+          <span class="metric">1,000+ visits wk 1</span>
+          <span class="metric">DeepSeek API</span>
+        </div>
+        <div class="project-footer">
+          <span class="project-link">jobs.nhathao.com</span>
+          <span class="project-arrow">↗</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-label">Education</div>
+    <h2 class="fade-up">Where it<br/>all started.</h2>
+    <br/>
+    <div class="edu-card fade-up delay-1">
+      <div class="edu-icon">🎓</div>
+      <div>
+        <div class="edu-school">University of Economics Ho Chi Minh City</div>
+        <div class="edu-degree">Entrepreneurship Management</div>
+        <div class="edu-year">Graduated 2017 · Ho Chi Minh City, Vietnam</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label" style="justify-content:center;">Contact</div>
+    <h2>Let's build<br/>something great.</h2>
+    <p class="section-desc">Whether you have a project in mind, a role to fill, or just want to connect — my inbox is always open.</p>
+
+    <div class="contact-links">
+      <a href="mailto:nguyenvunhathao0501@gmail.com" class="contact-chip fade-up">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        nguyenvunhathao0501@gmail.com
+      </a>
+      <a href="tel:0969016024" class="contact-chip fade-up delay-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.24h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.8A16 16 0 0 0 15.2 16.1l.95-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        0969.016.24
+      </a>
+      <a href="https://behance.net/nguyenvunhatminh" target="_blank" rel="noopener" class="contact-chip fade-up delay-2">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 1.2.836 1.884 2.109 1.884.91 0 1.55-.355 1.847-1.084l2.8.55zm-5.18-4.1c-.073-1.029-.668-1.806-1.86-1.806-1.216 0-1.874.676-2.025 1.806h3.886zm-8.59-6.3h4.562c2.338 0 3.451 1.049 3.451 2.77 0 1.361-.71 2.198-1.86 2.5 1.428.256 2.299 1.21 2.299 2.817 0 2.028-1.349 3.313-3.938 3.313H9.956V6.6zm3.9 4.658c1.05 0 1.628-.475 1.628-1.43 0-.916-.591-1.33-1.594-1.33H12.87v2.76h1.014zm.218 4.758c1.19 0 1.788-.524 1.788-1.57 0-.975-.618-1.493-1.808-1.493H12.87V16h1.204z"/></svg>
+        behance.net/nguyenvunhatminh
+      </a>
+      <a href="https://rebo.ai.vn" target="_blank" rel="noopener" class="contact-chip fade-up delay-3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        rebo.ai.vn
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Designed &amp; built by <span>Minh Nguyen</span> · Ho Chi Minh City · 2026</p>
+  </footer>
+
+  <script>
+    // Fade-up on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(el => {
+        if (el.isIntersecting) {
+          el.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Active nav link
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.style.color = '';
+            if (link.getAttribute('href') === '#' + entry.target.id) {
+              link.style.color = 'var(--text)';
+            }
+          });
+        }
+      });
+    }, { threshold: 0.5 });
+
+    sections.forEach(s => navObserver.observe(s));
+  </script>
+</body>
+</html>
