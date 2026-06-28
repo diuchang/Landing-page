@@ -1,0 +1,32 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Next.js dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "cwd": "D:\\Landing page\\landing-page-next",
+      "port": 3001,
+      "autoPort": true
+    },
+    {
+      "name": "npx serve (static)",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "."],
+      "port": 3000,
+      "autoPort": true
+    },
+    {
+      "name": "python http.server",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8080"],
+      "port": 8080
+    },
+    {
+      "name": "npx live-server",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["live-server", "--port=5500"],
+      "port": 5500
+    }
+  ]
+}
